@@ -50,6 +50,7 @@ public class TemperatureRepositoryImpl implements TemperatureRepository {
                         LOGGER.info("Failed batch operation {}", r.cause());
                         future.fail(r.cause());
                     }
+                    connection.close();
                 });
 
             }
@@ -78,6 +79,7 @@ public class TemperatureRepositoryImpl implements TemperatureRepository {
                         LOGGER.info("Could not retrieve latest temperature record {}", r.cause());
                         future.fail(r.cause());
                     }
+                    connection.close();
                 });
             }
         });
