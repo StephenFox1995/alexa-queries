@@ -1,0 +1,20 @@
+version: "3.1"
+services:
+  database:
+    image: mysql/mysql-server:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: "alexa"
+      MYSQL_USER: "alexa"
+      MYSQL_PASSWORD: "password"
+
+  alexa-queries:
+    image: alexa-queries
+    ports:
+      - "8080:8080"
+      - "5005:5005"
+    depends_on:
+      - database
+    links:
+      - database
